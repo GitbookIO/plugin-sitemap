@@ -9,15 +9,18 @@ module.exports = {
     hooks: {
         // Index page
         "page": function(page) {
-            urls.push({
-                url: this.contentPath(page.path)
-            });
+            if (this.options.generator == 'website') {
+                urls.push({
+                    url: this.contentPath(page.path)
+                });
+            }
 
             return page;
         },
 
         // Write sitemap.xml
         "finish": function() {
+            if (this.options.generator != 'website') return;
             if (!this.config.options.pluginsConfig.sitemap
             || !this.config.options.pluginsConfig.sitemap.hostname) {
                 throw "Need a 'hostname' configuration for sitemap generation";
