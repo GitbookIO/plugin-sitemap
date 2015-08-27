@@ -2,7 +2,7 @@
     "name": "gitbook-plugin-sitemap",
     "description": "Generate a sitemap for a GitBook",
     "main": "index.js",
-    "version": "0.0.0",
+    "version": "1.0.0",
     "engines": {
         "gitbook": ">=2.0.0"
     },
