@@ -7,6 +7,7 @@
         "gitbook": ">=2.0.0"
     },
     "homepage": "https://github.com/GitbookIO/plugin-sitemap",
+    "keywords": ["seo"],
     "repository": {
         "type": "git",
         "url": "https://github.com/GitbookIO/plugin-sitemap.git"
@@ -17,5 +18,14 @@
     "license": "Apache-2.0",
     "bugs": {
         "url": "https://github.com/GitbookIO/plugin-sitemap/issues"
+    },
+    "gitbook": {
+        "properties": {
+            "hostname": {
+                "type": "string",
+                "required": true,
+                "title": "Hostname for the book"
+            }
+        }
     }
 }
