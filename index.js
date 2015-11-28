@@ -10,8 +10,14 @@ module.exports = {
         // Index page
         "page": function(page) {
             if (this.options.generator == 'website') {
+                // multiple languages, if configured
+                var lang = "";
+                if(this.context.config.language) {
+                    lang = this.context.config.language + "/";
+                }
+
                 urls.push({
-                    url: this.contentPath(page.path)
+                    url: this.contentPath(lang + page.path)
                 });
             }
 
