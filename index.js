@@ -10,8 +10,12 @@ module.exports = {
         // Index page
         "page": function(page) {
             if (this.options.generator == 'website') {
+                // multiple languages, if configured
+                var lang = this.isSubBook()? this.config.get('language') : null;
+                if (lang) lang = lang + '/';
+
                 urls.push({
-                    url: this.contentPath(page.path)
+                    url: this.contentPath(lang + page.path)
                 });
             }
 
