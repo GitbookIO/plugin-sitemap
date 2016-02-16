@@ -12,7 +12,11 @@ module.exports = {
             if (this.options.generator == 'website') {
                 // multiple languages, if configured
                 var lang = this.isSubBook()? this.config.get('language') : null;
-                if (lang) lang = lang + '/';
+                if (lang) {
+                    lang = lang + '/';
+                } else {
+                    lang = '';
+                }
 
                 urls.push({
                     url: this.contentPath(lang + page.path)
