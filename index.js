@@ -9,38 +9,29 @@ module.exports = {
     hooks: {
         // Index page
         "page": function(page) {
-            if (this.options.generator == 'website') {
-                // multiple languages, if configured
-                var lang = this.isSubBook()? this.config.get('language') : null;
-                if (lang) lang = lang + '/';
+            if (this.output.name != 'website') return page;
 
-                urls.push({
-                    url: this.contentPath(lang + page.path)
-                });
-            }
+            var lang = this.isLanguageBook()? this.language : '';
+            if (lang) lang = lang + '/';
+
+            urls.push({
+                url: this.output.toURL(lang + page.path)
+            });
 
             return page;
         },
 
         // Write sitemap.xml
         "finish": function() {
-            if (this.options.generator != 'website') return;
-            if (!this.config.options.pluginsConfig.sitemap
-            || !this.config.options.pluginsConfig.sitemap.hostname) {
-                throw "Need a 'hostname' configuration for sitemap generation";
-            }
-
             var sitemap = sm.createSitemap({
                 cacheTime: 600000,
-                hostname: url.resolve(this.config.options.pluginsConfig.sitemap.hostname, '/'),
+                hostname: url.resolve(this.config.get('pluginsConfig.sitemap.hostname'), '/'),
                 urls: urls
             });
 
             var xml = sitemap.toString();
-            fs.writeFileSync(
-                path.resolve(this.options.output, 'sitemap.xml'),
-                xml
-            );
+
+            return this.output.writeFile('sitemap.xml', xml);
         }
     }
 };
