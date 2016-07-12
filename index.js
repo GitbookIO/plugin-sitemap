@@ -26,7 +26,7 @@ module.exports = {
             var sitemap = sm.createSitemap({
                 cacheTime: 600000,
                 hostname: url.resolve(this.config.get('pluginsConfig.sitemap.hostname'), '/'),
-                urls: urls
+                urls: [{ url: '/' }].concat(urls.slice(1))
             });
 
             var xml = sitemap.toString();
