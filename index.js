@@ -11,7 +11,7 @@ module.exports = {
         "page": function(page) {
             if (this.output.name != 'website') return page;
 
-            var lang = this.isLanguageBook()? this.language : '';
+            var lang = this.isLanguageBook() ? this.config.values.language : '';
             if (lang) lang = lang + '/';
 
             urls.push({
